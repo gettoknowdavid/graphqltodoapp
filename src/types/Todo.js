@@ -1,4 +1,5 @@
 const { gql } = require("apollo-server");
+const { DateTime } = require("neo4j-graphql-js");
 
 module.exports = gql`
   type Todo {
@@ -6,6 +7,7 @@ module.exports = gql`
     item: String!
     description: String
     isComplete: Boolean
+    addedDate: String
   }
 
   type Query {
@@ -16,6 +18,7 @@ module.exports = gql`
     item: String!
     description: String
     isComplete: Boolean
+    addedDate: String
   }
 
   input UpdateTodoInput {
@@ -32,6 +35,12 @@ module.exports = gql`
   }
 
   type Mutation {
+    addTodo(
+      item: String!
+      description: String
+      isComplete: Boolean
+      addedDate: String
+    ): Todo
     createTodo(input: CreateTodoInput!): Todo!
     updateTodo(id: ID, input: UpdateTodoInput!): Todo!
     deleteTodo(id: ID): DeletePayload!

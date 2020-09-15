@@ -1,3 +1,4 @@
+const { GraphQLDateTime } = require("graphql-iso-date");
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
@@ -12,6 +13,11 @@ const todoSchema = new Schema({
   },
   isComplete: {
     type: Boolean,
+    trim: true,
+  },
+  addedDate: {
+    type: Date,
+    default: Date.now(),
     trim: true,
   },
 });
