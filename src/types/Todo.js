@@ -1,5 +1,4 @@
 const { gql } = require("apollo-server");
-const { DateTime } = require("neo4j-graphql-js");
 
 module.exports = gql`
   type Todo {

@@ -1,9 +1,10 @@
 module.exports = async (_, { item, description, isComplete }, { models }) => {
-  const newTodo = await models.Todo.create(
+  const newTodo = await models.Todo({
     item,
     description,
     isComplete,
-    Date.now()
-  );
-  return newTodo;
+    addedDate: new Date().toISOString(),
+  });
+  const todo = await newTodo.save();
+  return todo;
 };
